@@ -22,6 +22,9 @@ python main.py --data toy --epoch 30 --transform 1 --learning_rate 0.001
 
 python main.py --data sonar --epoch 100 --transform 0 --learning_rate 0.001
 python main.py --data sonar --epoch 100 --transform 1 --learning_rate 0.001
+
+python main.py --data image
 ```
+**By selecting "image" option you will be prompted to select train image, train label, test image, test label and output directory to store the predicted image segmented**
 Read the argparse help messages to know tune the hyperparameters
 
