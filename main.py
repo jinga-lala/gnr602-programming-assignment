@@ -42,10 +42,39 @@ def main(args):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Inputs to model run script')
 	parser.add_argument('--input_dim', default=2, type=int, help='input dimension of features')
-	parser.add_argument('--epoch', default=20000, type=int, help='number of epochs')
-	parser.add_argument('--transform', default=0, type=int, help='do non linear transformation on input or not')
-	parser.add_argument('--learning_rate', default=0.01, type=float, help='learning rate')
-	parser.add_argument('--data', default='or', type=str, help='training and eval data')
+	parser.add_argument('--epoch', default=None, type=int, help='number of epochs')
+	parser.add_argument('--transform', default=None, type=int, help='do non linear transformation on input or not')
+	parser.add_argument('--learning_rate', default=None, type=float, help='learning rate')
+	parser.add_argument('--data', default=None, type=str, help='training and eval data')
 	args = parser.parse_args()
+
+	import tkinter as tk
+	from tkinter import simpledialog
+
+	ROOT = tk.Tk()
+
+	ROOT.withdraw()
+	# the input dialog
+	if args.transform is None:
+		args.transform = simpledialog.askstring(title="Transformation",
+	                                  prompt="Do you want non-linear transformation on input? Enter 0 for No, 1 for Yes \n Press OK for default value")
+	args.transform = 0 if args.transform == '' else int(args.transform)
+
+	if args.data is None:		
+		args.data = simpledialog.askstring(title="Data",
+	                                  prompt="Which dataset do you want to use? Possible choices [or, toy, sonar] \n Press OK for default value")
+	args.data = 'or' if args.data == '' else args.data
+
+	if args.learning_rate is None:
+		args.learning_rate = simpledialog.askstring(title="Learning rate",
+	                                  prompt="Set the learning rate for this run \n Press OK for default value")
+	args.learning_rate = 0.1 if args.learning_rate == '' else float(args.learning_rate)
+
+	if args.epoch is None:
+		args.epoch = simpledialog.askstring(title="Epochs",
+	                                  prompt="Set the number of epochs for this run \n Press OK for default value")
+	args.epoch  = 100 if args.epoch == '' else int(args.epoch)
+	# check it out
+
 
 	main(args)

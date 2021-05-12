@@ -12,8 +12,6 @@ class Perceptron(object):
 		self.weights = np.random.randn(self.arg.input_dim+1).reshape(-1,1) #(d+1,1)
 		def square(x):
 			return x**2
-		# self.transformation = la.mbda x: x**2 if self.arg.transform==True else x
-		print(self.arg.transform)
 		if self.arg.transform==1:
 			self.transformation = square
 		else:
